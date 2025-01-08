@@ -1,13 +1,10 @@
 import {
   NativeSyntheticEvent,
-  StyleSheet,
-  Text,
   TextInput,
   TextInputSubmitEditingEventData,
-  View,
 } from 'react-native';
 import React, {FC} from 'react';
-import {commonStyle, screenHeight} from '../ui/Constant';
+import {commonStyle, screenHeight, screenWidth} from '../ui/Constant';
 interface TextInputProps {
   placeholder?: string; // Placeholder text for the TextInput
   value?: string; // Current value of the TextInput
@@ -36,6 +33,10 @@ interface TextInputProps {
   onFocus?: () => void;
   onBlur?: () => void;
   textAlignVertical?: 'auto' | 'top' | 'bottom' | 'center';
+  width?: number;
+  heigth?: number;
+  color?: string;
+  backgroundColor?: string;
 }
 const CustomeInputText: FC<TextInputProps> = ({
   placeholder,
@@ -57,42 +58,51 @@ const CustomeInputText: FC<TextInputProps> = ({
   onFocus,
   onBlur,
   textAlignVertical,
+  heigth,
+  width,
+  color,
+  backgroundColor,
 }) => {
   return (
-    <View style={styles.inputContainer}>
-      <TextInput
-        style={[
-          style,
-          {
-            height: '100%',
-            width: '100%',
-            fontFamily: 'Poppins-Medium',
-            paddingHorizontal: 15,
-          },
-        ]}
-        placeholder={placeholder || 'enter you placeholder'}
-        returnKeyType={returnKeyType}
-        textAlign={textAlign}
-        onChangeText={onChangeText}
-        placeholderTextColor={placeholderTextColor}
-      />
-    </View>
+    <TextInput
+      style={[
+        {
+          height: heigth ? screenHeight * heigth : screenHeight * 5,
+          width:
+            width && width >= 100
+              ? '100%'
+              : width
+              ? screenWidth * width
+              : '100%',
+          fontFamily: 'Poppins-Regular',
+          paddingHorizontal: 15,
+          borderWidth: 1,
+          borderRadius: 10,
+          backgroundColor: backgroundColor || '#fff',
+          borderColor: '#E5E4E2',
+          color: color || '#000',
+        },
+      ]}
+      placeholder={placeholder || 'placeholder'}
+      returnKeyType={returnKeyType}
+      textAlign={textAlign}
+      onChangeText={onChangeText}
+      placeholderTextColor={placeholderTextColor || '#666'}
+      secureTextEntry={secureTextEntry}
+      keyboardType={keyboardType}
+      autoCapitalize={autoCapitalize}
+      maxLength={maxLength}
+      multiline={multiline}
+      numberOfLines={numberOfLines}
+      editable={editable}
+      value={value}
+      onSubmitEditing={onSubmitEditing}
+      onFocus={onFocus}
+      onBlur={onBlur}
+      textAlignVertical={textAlignVertical}
+      autoFocus={autoFocus}
+    />
   );
 };
 
 export default CustomeInputText;
-
-const styles = StyleSheet.create({
-  inputContainer: {
-    width: '100%',
-    height: screenHeight * 5,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderWidth: 1,
-    borderColor: '#cecece',
-    borderRadius: 10,
-    backgroundColor: '#fff',
-    overflow: 'hidden',
-   
-  },
-});

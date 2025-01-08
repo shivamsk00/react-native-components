@@ -13,9 +13,10 @@ export const color = {
 export const commonStyle = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 10,
+    // alignItems: 'center',
+    // justifyContent: 'center',
+    // padding: 10,
+    backgroundColor: '#444',
   },
 
   button: {

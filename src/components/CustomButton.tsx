@@ -1,6 +1,6 @@
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React, {FC} from 'react';
-import {color, commonStyle} from '../ui/Constant';
+import {color, commonStyle, screenHeight, screenWidth} from '../ui/Constant';
 import {RFValue} from 'react-native-responsive-fontsize';
 interface commonButtonProps {
   title?: string;
@@ -10,6 +10,8 @@ interface commonButtonProps {
   background?: string;
   textColor?: string;
   size?: number;
+  width?: number;
+  heigth?: number;
 }
 
 const CustomButton: FC<commonButtonProps> = ({
@@ -20,13 +22,26 @@ const CustomButton: FC<commonButtonProps> = ({
   background,
   size,
   textColor,
+  width,
+  heigth,
 }) => {
   return (
     <TouchableOpacity
       style={[
         style,
-        commonStyle.button,
-        {backgroundColor: background || color.darkBlue},
+        {
+          backgroundColor: background || color.darkBlue,
+          width:
+            width && width >= 100
+              ? '100%'
+              : width
+              ? screenWidth * width
+              : '100%',
+          height: heigth || screenHeight * 5,
+          justifyContent: 'center',
+          alignItems: 'center',
+          borderRadius: 10,
+        },
       ]}
       onPress={onPress}
       disabled={disabled}>
