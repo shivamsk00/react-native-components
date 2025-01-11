@@ -233,9 +233,9 @@ const styles = StyleSheet.create({
   },
   modalContainer: {
     backgroundColor: '#fff',
-    padding: screenWidth * 10,
+    padding: screenWidth * 6,
     borderRadius: 10,
-    width: screenWidth * 90,
+    width: screenWidth * 95,
     maxHeight: screenHeight * 70,
   },
   modalTitle: {
@@ -256,7 +256,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   dayBox: {
-    width: (screenWidth * 80) / 7 - screenWidth * 2, // Each box takes up 1/7th of the container
+    width: (screenWidth * 70) / 7 - screenWidth * 2, // Each box takes up 1/7th of the container
     height: screenHeight * 5,
     justifyContent: 'center',
     alignItems: 'center',
