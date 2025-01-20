@@ -60,7 +60,7 @@ const CustomText: FC<CustomTextProps> = ({
       onLayout={onLayout}
       style={[
         styles.text,
-        {color: color || "#000", fontSize: computedFontSize},
+        {color: color || '#000', fontSize: computedFontSize},
         style,
       ]}
       {...props}

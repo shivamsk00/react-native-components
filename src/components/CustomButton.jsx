@@ -1,20 +1,9 @@
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import React, {FC} from 'react';
-import {color, commonStyle, screenHeight, screenWidth} from '../ui/Constant';
-import {RFValue} from 'react-native-responsive-fontsize';
-interface commonButtonProps {
-  title?: string;
-  onPress?: () => void;
-  style?: any;
-  disabled?: boolean;
-  background?: string;
-  textColor?: string;
-  size?: number;
-  width?: number;
-  heigth?: number;
-}
+import React from 'react';
+import { TouchableOpacity, Text, View } from 'react-native';
+import { RFValue } from 'react-native-responsive-fontsize';
+import { color, screenHeight, screenWidth } from '../ui/Constant';
 
-const CustomButton: FC<commonButtonProps> = ({
+const CustomButton = ({
   style,
   onPress,
   disabled,
@@ -23,7 +12,7 @@ const CustomButton: FC<commonButtonProps> = ({
   size,
   textColor,
   width,
-  heigth,
+  height,
 }) => {
   return (
     <TouchableOpacity
@@ -37,19 +26,21 @@ const CustomButton: FC<commonButtonProps> = ({
               : width
               ? screenWidth * width
               : '100%',
-          height: heigth || screenHeight * 5,
+          height: height || screenHeight * 5,
           justifyContent: 'center',
           alignItems: 'center',
           borderRadius: 10,
         },
       ]}
       onPress={onPress}
-      disabled={disabled}>
+      disabled={disabled}
+    >
       <Text
         style={{
           color: textColor || color.white,
           fontSize: RFValue(size || 16),
-        }}>
+        }}
+      >
         {title}
       </Text>
     </TouchableOpacity>
@@ -57,5 +48,3 @@ const CustomButton: FC<commonButtonProps> = ({
 };
 
 export default CustomButton;
-
-const styles = StyleSheet.create({});

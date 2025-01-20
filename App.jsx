@@ -1,6 +1,6 @@
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
-import React from 'react';
-import {commonStyle} from './src/ui/Constant';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import React, { useEffect } from 'react';
+import { commonStyle } from './src/ui/Constant';
 import CustomButton from './src/components/CustomButton';
 import CustomeInputText from './src/components/CustomeInputText';
 import CustomSwitch from './src/components/CustomerSwitcher';
@@ -10,7 +10,8 @@ import CustomCalenderPicker from './src/components/CustomCalenderPicker';
 import CustomDatePicker from './src/components/CustomDatePicker';
 import CustomSlider from './src/components/CustomSlider';
 import RegisterScreen from './src/screens/RegisterScreen';
-
+import CustomWeeler from "./src/components/CustomWeeler"
+import WeelPrize from './src/components/Weel';
 const App = () => {
   const images = [
     'https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?q=80&w=2076&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
@@ -19,15 +20,11 @@ const App = () => {
     'https://images.unsplash.com/photo-1673555791730-0ee56e1b768b?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   ];
 
-  const handleSelect = (value: string) => {
+  const handleSelect = (value) => {
     console.log('Selected:', value);
   };
-
-  return(
-    <RegisterScreen />
-  )
-
-
+  
+  return <CustomWeeler />
 
   return (
     <>
@@ -48,8 +45,8 @@ const App = () => {
       />
 
       <ScrollView>
-        <View style={[commonStyle.container, {gap: 20}]}>
-          {/* <CustomButton title="Submit" background="orange" />
+        <View style={[commonStyle.container, { gap: 20 }]}>
+          <CustomButton title="Submit" background="orange" />
           <CustomeInputText heigth={5} width={100} />
 
           <CustomSwitch
@@ -75,8 +72,8 @@ const App = () => {
             Custom Text components
           </CustomText>
 
-          <CustomDatePicker disableFuture={true} disablePast={true} />
-          <CustomCalenderPicker /> */}
+          <CustomDatePicker />
+          <CustomCalenderPicker />
 
           <CustomSlider
             images={images}

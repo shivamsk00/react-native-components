@@ -1,28 +1,15 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   StyleSheet,
   View,
   Image,
   Dimensions,
   ScrollView,
-  NativeSyntheticEvent,
-  NativeScrollEvent,
 } from 'react-native';
 
-interface CarouselProps {
-  images: string[];
-  autoPlay?: boolean;
-  autoPlayInterval?: number;
-  showSlideIndicator?: boolean;
-  slideIndicatorColor?: string;
-  loop?: boolean;
-  containerStyle?: object;
-  imageStyle?: object;
-}
+const { width } = Dimensions.get('window');
 
-const {width} = Dimensions.get('window');
-
-const CustomSlider: React.FC<CarouselProps> = ({
+const CustomSlider = ({
   images,
   autoPlay = false,
   autoPlayInterval = 3000,
@@ -33,10 +20,10 @@ const CustomSlider: React.FC<CarouselProps> = ({
   imageStyle,
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const scrollViewRef = useRef<ScrollView>(null);
+  const scrollViewRef = useRef(null);
 
   useEffect(() => {
-    let interval: NodeJS.Timeout;
+    let interval;
 
     if (autoPlay) {
       interval = setInterval(() => {
@@ -62,7 +49,7 @@ const CustomSlider: React.FC<CarouselProps> = ({
     return () => clearInterval(interval);
   }, [autoPlay, autoPlayInterval, currentIndex, images.length, loop]);
 
-  const onScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+  const onScroll = (event) => {
     const slideIndex = Math.round(event.nativeEvent.contentOffset.x / width);
     setCurrentIndex(slideIndex);
   };
@@ -75,11 +62,12 @@ const CustomSlider: React.FC<CarouselProps> = ({
         pagingEnabled
         showsHorizontalScrollIndicator={false}
         onScroll={onScroll}
-        scrollEventThrottle={16}>
+        scrollEventThrottle={16}
+      >
         {images.map((image, index) => (
           <Image
             key={index}
-            source={{uri: image}}
+            source={{ uri: image }}
             style={[styles.image, imageStyle]}
           />
         ))}
